@@ -1,0 +1,18 @@
+
+version: '3.8'
+
+services:
+  uploader:
+    build:
+      context: ./uploader
+    ports:
+      - "5000:10000"
+    container_name: uploader
+
+  bot:
+    build:
+      context: ./bot
+    env_file:
+      - ./bot/.env.example
+    depends_on:
+      - uploader
